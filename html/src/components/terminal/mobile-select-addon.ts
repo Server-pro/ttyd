@@ -17,12 +17,12 @@ export class MobileSelectAddon implements ITerminalAddon {
             console.log('coords[1] = ' + coords[1]);
 
             //if (!navigator.userAgent.match(/ipad|ipod|iphone/i)) return;
-            const row = coords[0];
-            console.log('row = ' + row);
-            let right = coords[1] - 1;
+            let right = coords[0] - 1;
             console.log('right = ' + right);
-            let left = coords[1] - 1;
+            let left = coords[0] - 1;
             console.log('left = ' + left);
+            const row = coords[1];
+            console.log('row = ' + row);
 
             terminal.select(right, row, 1);
             console.log('char under click = ' + terminal.getSelection());
