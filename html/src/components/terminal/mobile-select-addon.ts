@@ -39,6 +39,7 @@ export class MobileSelectAddon implements ITerminalAddon {
 
             while (terminal.getSelection() !== ' ' && left > 0) {
                 terminal.select(--left, row, 1);
+                console.log('checking \'' + terminal.getSelection() + '\' for space');
             }
 
             console.log('left after find = ' + left);
