@@ -37,7 +37,7 @@ export class MobileSelectAddon implements ITerminalAddon {
 
             console.log('right after find = ' + right);
 
-            while (terminal.getSelection() !== ' ') {
+            while (terminal.getSelection() !== ' ' && left > 0) {
                 terminal.select(--left, row, 1);
             }
 
