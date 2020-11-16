@@ -8,13 +8,15 @@ export class MobileSelectAddon implements ITerminalAddon {
     activate(terminal: Terminal) {
         this._terminal = terminal;
         console.log('testing');
-        /*addEventListener('mousedown', ev => {
+        addEventListener('mousedown', ev => {
 
             console.log('ev.x = ' + ev.x);
             console.log('ev.y = ' + ev.y);
             const coords = this._core._mouseService.getCoords(ev, terminal.element, terminal.cols, terminal.rows, false);
             console.log('coords[0] = ' + coords[0]);
             console.log('coords[1] = ' + coords[1]);
+
+            return;
 
             //if (!navigator.userAgent.match(/ipad|ipod|iphone/i)) return;
             let row = coords[0];
@@ -46,7 +48,7 @@ export class MobileSelectAddon implements ITerminalAddon {
             console.log('selected: ' + terminal.getSelection());
 
             document.execCommand('copy');
-        });*/
+        });
         this._core = (this._terminal as any)._core;
     }
 
