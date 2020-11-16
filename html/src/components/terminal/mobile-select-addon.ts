@@ -1,12 +1,18 @@
 import { Terminal, ITerminalAddon } from 'xterm';
+import { OverlayAddon } from './overlay';
 
 export class MobileSelectAddon implements ITerminalAddon {
 
     private _terminal: Terminal;
+    private _overlayAddon: OverlayAddon;
     private _doSelect: boolean;
 
     //terminal with access to private api
     private _core: any;
+
+    constructor(overlayAddon: OverlayAddon) {
+        this._overlayAddon = overlayAddon;
+    }
 
     public activate(terminal: Terminal) {
 
@@ -33,6 +39,7 @@ export class MobileSelectAddon implements ITerminalAddon {
             const coords = this._evToCoords(ev);
             this._core._selectionService._selectWordAt(coords, false);
             this._copyToClipboard(terminal.getSelection());
+            this._overlayAddon.showOverlay('✂', 1);
             this._doSelect = false;
         });
     }
