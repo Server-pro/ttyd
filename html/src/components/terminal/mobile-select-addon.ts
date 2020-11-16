@@ -17,7 +17,7 @@ export class MobileSelectAddon implements ITerminalAddon {
             console.log('coords[1] = ' + coords[1]);
 
             //if (!navigator.userAgent.match(/ipad|ipod|iphone/i)) return;
-            const row = coords[0] - 1;
+            const row = coords[0];
             console.log('row = ' + row);
             let right = coords[1] - 1;
             console.log('right = ' + right);
