@@ -39,7 +39,7 @@ export class MobileSelectAddon implements ITerminalAddon {
             const coords = this._evToCoords(ev);
             this._core._selectionService._selectWordAt(coords, false);
             this._copyToClipboard(terminal.getSelection());
-            this._overlayAddon.showOverlay('✂', 1);
+            this._overlayAddon.showOverlay('✂', 1000);
             this._doSelect = false;
         });
     }
