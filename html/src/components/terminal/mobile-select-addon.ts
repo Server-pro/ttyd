@@ -13,10 +13,10 @@ export class MobileSelectAddon implements ITerminalAddon {
             console.log('ev.x = ' + ev.x);
             console.log('ev.y = ' + ev.y);
             const coords = this._core._mouseService.getCoords(ev, terminal.element, terminal.cols, terminal.rows, false);
-            console.log('coords[0] = ' + coords[0]);
-            console.log('coords[1] = ' + coords[1]);
+            const x = coords[0] - 1;
+            const y = coords[1] - 1;
 
-            terminal.selectLines(coords[1] - 1, coords[1] - 1);
+            terminal.selectLines(y-1, y+1);
             document.execCommand('copy');
 
             /*
