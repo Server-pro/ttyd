@@ -11,7 +11,7 @@ export class MobileSelectAddon implements ITerminalAddon {
         addEventListener('dblclick', ev => {
             console.log('ev.x' + ev.x);
             console.log('ev.y' + ev.y);
-            const coords = this._core._mouseService.getCoords(ev, terminal.element, terminal.cols, terminal.rows, true);
+            const coords = this._core._mouseService.getCoords(ev, terminal.element, terminal.cols, terminal.rows, false);
             console.log('coords[0] = ' + coords[0]);
             console.log('coords[1] = ' + coords[1]);
 
