@@ -16,9 +16,7 @@ export class MobileSelectAddon implements ITerminalAddon {
             const coords = this._evToCoords(ev);
             this._core._selectionService._selectWordAt(coords, false);
 
-            let selected = terminal.getSelection();
-
-            console.log('selected length = ' + selected.length);
+            if(terminal.getSelection().length === 0) return;
 
             this._time = ev.timeStamp;
             this._doSelect = true;
@@ -31,6 +29,7 @@ export class MobileSelectAddon implements ITerminalAddon {
             const coords = this._evToCoords(ev);
             this._core._selectionService._selectWordAt(coords, false);
             copyToClipboard(terminal.getSelection());
+            this._doSelect = false;
         });
     }
 
