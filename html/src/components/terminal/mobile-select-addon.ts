@@ -10,31 +10,42 @@ export class MobileSelectAddon implements ITerminalAddon {
         console.log('testing');
         addEventListener('mousedown', ev => {
 
-            console.log('ev.x' + ev.x);
-            console.log('ev.y' + ev.y);
+            console.log('ev.x = ' + ev.x);
+            console.log('ev.y = ' + ev.y);
             const coords = this._core._mouseService.getCoords(ev, terminal.element, terminal.cols, terminal.rows, false);
             console.log('coords[0] = ' + coords[0]);
             console.log('coords[1] = ' + coords[1]);
 
-            //if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
-                let row = coords[0];
-                let right = coords[1] - 1;
-                let left = coords[1] - 1;
+            //if (!navigator.userAgent.match(/ipad|ipod|iphone/i)) return;
+            let row = coords[0];
+            console.log('row = ' + row);
+            let right = coords[1] - 1;
+            console.log('right = ' + right);
+            let left = coords[1] - 1;
+            console.log('left = ' + left);
 
-                terminal.select(row, right, 1);
-                if (terminal.getSelection() === ' ') return;
+            terminal.select(row, right, 1);
+            if (terminal.getSelection() === ' ') return;
 
-                while (terminal.getSelection() !== ' ') {
-                    terminal.select(row, ++right, 1);
-                }
+            console.log('not space');
 
-                while (terminal.getSelection() !== ' ') {
-                    terminal.select(row, --left, 1);
-                }
+            while (terminal.getSelection() !== ' ') {
+                terminal.select(row, ++right, 1);
+            }
 
-                terminal.select(row, left, right - left + 1);
-                document.execCommand('copy');
-            //}
+            console.log('right after find = ' + right);
+
+            while (terminal.getSelection() !== ' ') {
+                terminal.select(row, --left, 1);
+            }
+
+            console.log('left after find = ' + left);
+
+            terminal.select(row, left, right - left + 1);
+
+            console.log('selected: ' + terminal.getSelection());
+
+            document.execCommand('copy');
         });
         this._core = (this._terminal as any)._core;
     }
