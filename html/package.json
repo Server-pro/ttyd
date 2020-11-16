@@ -16,11 +16,6 @@
     "check": "gts check",
     "fix": "gts fix"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "src/**/*.ts": [
       "gts fix",

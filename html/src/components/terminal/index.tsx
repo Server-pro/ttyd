@@ -8,6 +8,7 @@ import { WebLinksAddon } from 'xterm-addon-web-links';
 
 import { OverlayAddon } from './overlay';
 import { ZmodemAddon } from '../zmodem';
+import { MobileSelectAddon } from './mobile-select-addon';
 
 import 'xterm/css/xterm.css';
 
@@ -160,6 +161,7 @@ export class Xterm extends Component<Props> {
         terminal.loadAddon(overlayAddon);
         terminal.loadAddon(new WebLinksAddon());
         terminal.loadAddon(this.zmodemAddon);
+        terminal.loadAddon(new MobileSelectAddon());
 
         terminal.onTitleChange(data => {
             if (data && data !== '' && !this.titleFixed) {
