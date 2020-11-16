@@ -14,7 +14,7 @@ export class MobileSelectAddon implements ITerminalAddon {
             const coords = this._core._mouseService.getCoords(ev, terminal.element, terminal.cols, terminal.rows, true);
             console.log('coords[0] = ' + coords[0]);
             console.log('coords[1] = ' + coords[1]);
-        })
+        });
         this._core = (this._terminal as any)._core;
     }
 
