@@ -6,7 +6,7 @@ export class MobileSelectAddon implements ITerminalAddon {
     private _core;
 
     activate(terminal: Terminal) {
-        this._core = (this._terminal as any)._core;
+        this._core = (terminal as any)._core;
         console.log('testing');
         addEventListener('mousedown', ev => {
 
