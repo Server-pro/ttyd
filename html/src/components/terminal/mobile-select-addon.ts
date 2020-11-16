@@ -18,7 +18,8 @@ export class MobileSelectAddon implements ITerminalAddon {
 
             terminal.selectLines(y, y);
             let inputField = document.createElement('input');
-            inputField.type = "text";
+            inputField.type = 'text';
+            inputField.contentEditable = 'true';
             inputField.textContent = terminal.getSelection();
             inputField.select();
             document.execCommand('copy');
