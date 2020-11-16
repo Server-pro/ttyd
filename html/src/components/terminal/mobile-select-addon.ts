@@ -74,5 +74,6 @@ function copyToClipboard(string) {
     sel.addRange(range);
 
     textarea.setSelectionRange(0, textarea.value.length);
-    result = document.execCommand('copy');
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
 }
