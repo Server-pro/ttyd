@@ -9,7 +9,7 @@ export class MobileSelectAddon implements ITerminalAddon {
     activate(terminal: Terminal) {
         this._core = (terminal as any)._core;
 
-/*        addEventListener('touchend', ev => {
+        addEventListener('touchend', ev => {
             let heldFor = ev.timeStamp - this._time;
             if (heldFor < 1000) return;
 
@@ -25,7 +25,7 @@ export class MobileSelectAddon implements ITerminalAddon {
 
         addEventListener('touchstart', ev => {
             this._time = ev.timeStamp;
-        });*/
+        });
 
         terminal.onData(ev => {
             if (ev.match('x')) {
