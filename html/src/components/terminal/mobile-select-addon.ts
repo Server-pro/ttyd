@@ -16,6 +16,10 @@ export class MobileSelectAddon implements ITerminalAddon {
             console.log('coords[0] = ' + coords[0]);
             console.log('coords[1] = ' + coords[1]);
 
+            terminal.selectLines(coords[1], coords[1]);
+            document.execCommand('copy');
+
+            /*
             //if (!navigator.userAgent.match(/ipad|ipod|iphone/i)) return;
             let right = coords[0] - 1;
             console.log('right = ' + right);
@@ -31,7 +35,7 @@ export class MobileSelectAddon implements ITerminalAddon {
 
             console.log('not space');
 
-            while (terminal.getSelection() !== ' ') {
+            while (terminal.getSelection() !== ' ' && right < terminal.cols) {
                 terminal.select(++right, row, 1);
             }
 
@@ -50,7 +54,7 @@ export class MobileSelectAddon implements ITerminalAddon {
 
             console.log('selected: ' + terminal.getSelection());
 
-            document.execCommand('copy');
+            document.execCommand('copy');*/
         });
     }
 
