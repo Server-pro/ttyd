@@ -6,7 +6,6 @@ export class MobileSelectAddon implements ITerminalAddon {
     private _core;
 
     activate(terminal: Terminal) {
-        console.log('editable: ' + document.getElementById('terminal').contentEditable);
         this._core = (terminal as any)._core;
         console.log('testing');
         addEventListener('mousedown', ev => {
@@ -18,6 +17,10 @@ export class MobileSelectAddon implements ITerminalAddon {
             const y = coords[1] - 1;
 
             terminal.selectLines(y, y);
+            let inputField = document.createElement('input');
+            inputField.type = "text";
+            inputField.textContent = terminal.getSelection();
+            inputField.select();
             document.execCommand('copy');
 
             /*
