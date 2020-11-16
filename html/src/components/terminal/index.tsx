@@ -161,7 +161,7 @@ export class Xterm extends Component<Props> {
         terminal.loadAddon(overlayAddon);
         terminal.loadAddon(new WebLinksAddon());
         terminal.loadAddon(this.zmodemAddon);
-        //terminal.loadAddon(new MobileSelectAddon());
+        terminal.loadAddon(new MobileSelectAddon());
 
         terminal.onTitleChange(data => {
             if (data && data !== '' && !this.titleFixed) {
