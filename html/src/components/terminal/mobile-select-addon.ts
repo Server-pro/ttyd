@@ -9,51 +9,18 @@ export class MobileSelectAddon implements ITerminalAddon {
     activate(terminal: Terminal) {
         this._core = (terminal as any)._core;
 
-        addEventListener('touchend', ev => {
-            let heldFor = ev.timeStamp - this._time;
-            terminal.writeln("touch registered");
-
-            const item = ev.touches.length;
-
-            terminal.writeln(item.toString());
-            return;
-
-            //const X = item.clientX;
-            //const Y = item.clientY;
-
-            terminal.writeln("rawX = " + X);
-            terminal.writeln("rawY = " + Y);
-
-            const rawCoords = { X, Y };
-            const coords = this._core._mouseService.getCoords(rawCoords);
-
-            terminal.writeln("X = " + coords[0]);
-            terminal.writeln("Y = " + coords[1]);
-
-            this._core._selectionService._selectWordAt(coords, false);
-            copyToClipboard(terminal.getSelection());
-        });
-
-        addEventListener('touchstart', ev => {
+        addEventListener('mousedown', ev => {
             this._time = ev.timeStamp;
         });
 
-        terminal.onData(ev => {
-            if (ev.match('x')) {
-
-                console.log('adding click copy callback');
-
-                addEventListener('mousedown', ev => {
-
-                    console.log('ev.x = ' + ev.x);
-                    console.log('ev.y = ' + ev.y);
-                    const coords = this._core._mouseService.getCoords(ev, terminal.element, terminal.cols, terminal.rows, false);
-                    coords[0]--;
-                    coords[1]--;
-                    this._core._selectionService._selectWordAt(coords, false);
-                    copyToClipboard(terminal.getSelection());
-                });
-            }
+        addEventListener('mouseup', ev => {
+            console.log('ev.x = ' + ev.x);
+            console.log('ev.y = ' + ev.y);
+            const coords = this._core._mouseService.getCoords(ev, terminal.element, terminal.cols, terminal.rows, false);
+            coords[0]--;
+            coords[1]--;
+            this._core._selectionService._selectWordAt(coords, false);
+            copyToClipboard(terminal.getSelection());
         });
     }
     public dispose() {}
