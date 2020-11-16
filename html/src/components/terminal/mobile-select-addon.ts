@@ -11,7 +11,7 @@ export class MobileSelectAddon implements ITerminalAddon {
 
         addEventListener('touchend', ev => {
             let heldFor = ev.timeStamp - this._time;
-            if (heldFor < 1000) return;
+            terminal.writeln("touch registered");
 
             const item = ev.touches.item(1);
             const X = item.clientX;
