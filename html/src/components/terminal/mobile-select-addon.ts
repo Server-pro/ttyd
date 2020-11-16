@@ -16,7 +16,7 @@ export class MobileSelectAddon implements ITerminalAddon {
             console.log('coords[0] = ' + coords[0]);
             console.log('coords[1] = ' + coords[1]);
 
-            terminal.selectLines(coords[1], coords[1]);
+            terminal.selectLines(coords[1] - 1, coords[1] - 1);
             document.execCommand('copy');
 
             /*
