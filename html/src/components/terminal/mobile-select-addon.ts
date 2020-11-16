@@ -8,7 +8,7 @@ export class MobileSelectAddon implements ITerminalAddon {
     activate(terminal: Terminal) {
         this._terminal = terminal;
         console.log('testing');
-        addEventListener('mousedown', ev => {
+        /*addEventListener('mousedown', ev => {
 
             console.log('ev.x = ' + ev.x);
             console.log('ev.y = ' + ev.y);
@@ -46,7 +46,7 @@ export class MobileSelectAddon implements ITerminalAddon {
             console.log('selected: ' + terminal.getSelection());
 
             document.execCommand('copy');
-        });
+        });*/
         this._core = (this._terminal as any)._core;
     }
 
