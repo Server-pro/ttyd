@@ -7,6 +7,9 @@ export class MobileSelectAddon implements ITerminalAddon {
     private _overlayAddon: OverlayAddon;
     private _doSelect: boolean;
 
+    private _scissors: string;
+    private _scissorTimeout: number;
+
     //terminal with access to private api
     private _core: any;
 
@@ -37,10 +40,16 @@ export class MobileSelectAddon implements ITerminalAddon {
             if (!this._doSelect) return;
 
             const coords = this._evToCoords(ev);
+
             this._core._selectionService._selectWordAt(coords, false);
             this._copyToClipboard(terminal.getSelection());
             this._overlayAddon.showOverlay('✂', 1000);
+
             this._doSelect = false;
+        });
+
+        addEventListener('paste', () => {
+            this._overlayAddon.showOverlay('📋', 1000);            
         });
     }
 
