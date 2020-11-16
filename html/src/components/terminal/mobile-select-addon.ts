@@ -9,24 +9,16 @@ export class MobileSelectAddon implements ITerminalAddon {
     private _doSelect : boolean;
 
     public activate(terminal: Terminal) {
+        this._terminal = terminal;
         this._core = (terminal as any)._core;
 
         addEventListener('mousedown', ev => {
-            const coords = this._core._mouseService.getCoords(ev, terminal.element, terminal.cols, terminal.rows, false);
-            coords[0]--;
-            coords[1]--;
+            const coords = this._evToCoords(ev);
             this._core._selectionService._selectWordAt(coords, false);
 
             let selected = terminal.getSelection();
 
-            if (selected === '') {
-                console.log('clicked on null');
-                return;
-            }
-            if (selected === ' ') {
-                console.log('clicked on space');
-                return;
-            }
+            console.log('selected length = ' + selected.length);
 
             this._time = ev.timeStamp;
             this._doSelect = true;
@@ -36,15 +28,21 @@ export class MobileSelectAddon implements ITerminalAddon {
 
             if (!this._doSelect) return;
 
-            console.log('ev.x = ' + ev.x);
-            console.log('ev.y = ' + ev.y);
-            const coords = this._core._mouseService.getCoords(ev, terminal.element, terminal.cols, terminal.rows, false);
-            coords[0]--;
-            coords[1]--;
+            const coords = this._evToCoords(ev);
             this._core._selectionService._selectWordAt(coords, false);
             copyToClipboard(terminal.getSelection());
         });
     }
+
+    private _evToCoords(ev: MouseEvent) {
+        const coords = this._core._mouseService.getCoords(ev, this._terminal.element, this._terminal.cols, this._terminal.rows, false);
+        coords[0]--;
+        coords[1]--;
+        console.log("coords[0] = " + coords[0]);
+        console.log("coords[1] = " + coords[1]);
+        return coords;
+    }
+
     public dispose() {}
 }
 
