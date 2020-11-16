@@ -33,6 +33,7 @@ export class MobileSelectAddon implements ITerminalAddon {
             const coords = this._evToCoords(ev);
             this._core._selectionService._selectWordAt(coords, false);
             copyToClipboard(terminal.getSelection());
+            terminal.writeln('Text copied.');
             this._doSelect = false;
         });
     }
