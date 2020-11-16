@@ -17,8 +17,14 @@ export class MobileSelectAddon implements ITerminalAddon {
             coords[1]--;
             this._core._selectionService._selectWordAt(coords, false);
 
-            if (terminal.getSelection() === '') {
+            let selected = terminal.getSelection();
+
+            if (selected === '') {
                 console.log('clicked on null');
+                return;
+            }
+            if (selected === ' ') {
+                console.log('clicked on space');
                 return;
             }
 
