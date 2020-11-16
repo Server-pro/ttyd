@@ -13,9 +13,13 @@ export class MobileSelectAddon implements ITerminalAddon {
             let heldFor = ev.timeStamp - this._time;
             terminal.writeln("touch registered");
 
-            const item = ev.touches.item(0);
-            const X = item.clientX;
-            const Y = item.clientY;
+            const item = ev.touches.length;
+
+            terminal.writeln(item.toString());
+            return;
+
+            //const X = item.clientX;
+            //const Y = item.clientY;
 
             terminal.writeln("rawX = " + X);
             terminal.writeln("rawY = " + Y);
