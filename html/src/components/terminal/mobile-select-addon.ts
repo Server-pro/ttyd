@@ -6,7 +6,7 @@ export class MobileSelectAddon implements ITerminalAddon {
     private _core;
 
     activate(terminal: Terminal) {
-        this._terminal = terminal;
+        this._core = (this._terminal as any)._core;
         console.log('testing');
         addEventListener('mousedown', ev => {
 
@@ -17,11 +17,11 @@ export class MobileSelectAddon implements ITerminalAddon {
             console.log('coords[1] = ' + coords[1]);
 
             //if (!navigator.userAgent.match(/ipad|ipod|iphone/i)) return;
-            let row = coords[0];
+            const row = coords[0];
             console.log('row = ' + row);
-            let right = coords[1] - 1;
+            let right = coords[1] - 2;
             console.log('right = ' + right);
-            let left = coords[1] - 1;
+            let left = coords[1] - 2;
             console.log('left = ' + left);
 
             terminal.select(row, right, 1);
@@ -50,7 +50,6 @@ export class MobileSelectAddon implements ITerminalAddon {
 
             document.execCommand('copy');
         });
-        this._core = (this._terminal as any)._core;
     }
 
     public dispose() {}
