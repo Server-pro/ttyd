@@ -21,7 +21,7 @@ export class MobileSelectAddon implements ITerminalAddon {
             console.log('right = ' + right);
             let left = coords[0] - 1;
             console.log('left = ' + left);
-            const row = coords[1];
+            const row = coords[1] - 1;
             console.log('row = ' + row);
 
             terminal.select(right, row, 1);
@@ -33,18 +33,18 @@ export class MobileSelectAddon implements ITerminalAddon {
             console.log('not space');
 
             while (terminal.getSelection() !== ' ') {
-                terminal.select(row, ++right, 1);
+                terminal.select(++right, row, 1);
             }
 
             console.log('right after find = ' + right);
 
             while (terminal.getSelection() !== ' ') {
-                terminal.select(row, --left, 1);
+                terminal.select(--left, row, 1);
             }
 
             console.log('left after find = ' + left);
 
-            terminal.select(row, left, right - left + 1);
+            terminal.select(left, row, right - left + 1);
 
             console.log('selected: ' + terminal.getSelection());
 
