@@ -16,7 +16,8 @@ export class MobileSelectAddon implements ITerminalAddon {
             const x = coords[0] - 1;
             const y = coords[1] - 1;
 
-            terminal.selectLines(y, y);
+            this._core._selectionService._selectWordAt(coords, false);
+            //terminal.selectLines(y, y);
             copyToClipboard(terminal.getSelection());
 
             /*
@@ -63,6 +64,7 @@ export class MobileSelectAddon implements ITerminalAddon {
     public dispose() {}
 }
 
+//copied from stackoverflow: https://stackoverflow.com/a/53951634
 /**
  * Copy a string to clipboard
  * @param  {String} string         The string to be copied to clipboard
