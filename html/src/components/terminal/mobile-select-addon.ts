@@ -26,9 +26,8 @@ export class MobileSelectAddon implements ITerminalAddon {
 
             terminal.select(right, row, 1);
             console.log('char under click = ' + terminal.getSelection());
-            if (terminal.getSelection() === ' ') return;
 
-            return;
+            if (terminal.getSelection() === ' ') return;
 
             console.log('not space');
 
