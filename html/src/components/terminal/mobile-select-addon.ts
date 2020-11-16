@@ -3,12 +3,16 @@ import { Terminal, ITerminalAddon } from 'xterm';
 export class MobileSelectAddon implements ITerminalAddon {
 
     private _terminal: Terminal;
+    private _doSelect: boolean;
+
+    //terminal with access to private api
     private _core: any;
 
-    private _time : number;
-    private _doSelect : boolean;
-
     public activate(terminal: Terminal) {
+
+        //only active for ios users
+        if (!navigator.userAgent.match(/ipad|ipod|iphone/i)) return;
+
         this._terminal = terminal;
         this._core = (terminal as any)._core;
 
@@ -16,9 +20,9 @@ export class MobileSelectAddon implements ITerminalAddon {
             const coords = this._evToCoords(ev);
             this._core._selectionService._selectWordAt(coords, false);
 
+            //return if clicked on space, without this users can't click to type as normal
             if(terminal.getSelection().length === 0) return;
 
-            this._time = ev.timeStamp;
             this._doSelect = true;
         });
 
@@ -45,11 +49,10 @@ export class MobileSelectAddon implements ITerminalAddon {
     public dispose() {}
 }
 
-//copied from stackoverflow: https://stackoverflow.com/a/53951634
 /**
+ * Copied from stackoverflow: https://stackoverflow.com/a/53951634
  * Copy a string to clipboard
  * @param  {String} string         The string to be copied to clipboard
- * @return {Boolean}               returns a boolean correspondent to the success of the copy operation.
  */
 function copyToClipboard(string) {
     let textarea;
