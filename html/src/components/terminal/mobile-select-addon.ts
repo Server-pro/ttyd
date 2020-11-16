@@ -33,6 +33,9 @@ export class MobileSelectAddon implements ITerminalAddon {
         });
 
         addEventListener('mouseup', ev => {
+
+            if (!this._doSelect) return;
+
             console.log('ev.x = ' + ev.x);
             console.log('ev.y = ' + ev.y);
             const coords = this._core._mouseService.getCoords(ev, terminal.element, terminal.cols, terminal.rows, false);
