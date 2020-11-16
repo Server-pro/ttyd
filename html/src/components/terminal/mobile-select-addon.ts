@@ -8,7 +8,7 @@ export class MobileSelectAddon implements ITerminalAddon {
     activate(terminal: Terminal) {
         this._terminal = terminal;
         console.log('testing');
-        addEventListener('dblclick', ev => {
+        addEventListener('mousedown', ev => {
             console.log('ev.x' + ev.x);
             console.log('ev.y' + ev.y);
             const coords = this._core._mouseService.getCoords(ev, terminal.element, terminal.cols, terminal.rows, false);
