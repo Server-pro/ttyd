@@ -16,8 +16,15 @@ export class MobileSelectAddon implements ITerminalAddon {
             const item = ev.touches.item(1);
             const X = item.clientX;
             const Y = item.clientY;
+
+            terminal.writeln("rawX = " + X);
+            terminal.writeln("rawY = " + Y);
+
             const rawCoords = { X, Y };
             const coords = this._core._mouseService.getCoords(rawCoords);
+
+            terminal.writeln("X = " + coords[0]);
+            terminal.writeln("Y = " + coords[1]);
 
             this._core._selectionService._selectWordAt(coords, false);
             copyToClipboard(terminal.getSelection());
