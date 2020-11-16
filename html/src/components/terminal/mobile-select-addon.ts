@@ -24,8 +24,6 @@ export class MobileSelectAddon implements ITerminalAddon {
             const row = coords[1] - 1;
             console.log('row = ' + row);
 
-            return;
-
             terminal.select(right, row, 1);
             console.log('char under click = ' + terminal.getSelection());
 
@@ -44,6 +42,8 @@ export class MobileSelectAddon implements ITerminalAddon {
             }
 
             console.log('left after find = ' + left);
+
+            return;
 
             terminal.select(left, row, right - left + 1);
 
