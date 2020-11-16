@@ -18,9 +18,8 @@ export class MobileSelectAddon implements ITerminalAddon {
                     console.log('ev.x = ' + ev.x);
                     console.log('ev.y = ' + ev.y);
                     const coords = this._core._mouseService.getCoords(ev, terminal.element, terminal.cols, terminal.rows, false);
-                    const x = coords[0] - 1;
-                    const y = coords[1] - 1;
-
+                    coords[0]--;
+                    coords[1]--;
                     this._core._selectionService._selectWordAt(coords, false);
                     copyToClipboard(terminal.getSelection());
                 });
