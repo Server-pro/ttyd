@@ -32,8 +32,7 @@ export class MobileSelectAddon implements ITerminalAddon {
 
             const coords = this._evToCoords(ev);
             this._core._selectionService._selectWordAt(coords, false);
-            copyToClipboard(terminal.getSelection());
-            terminal.writeln('Text copied.');
+            this._copyToClipboard(terminal.getSelection());
             this._doSelect = false;
         });
     }
@@ -47,36 +46,38 @@ export class MobileSelectAddon implements ITerminalAddon {
         return coords;
     }
 
+    /**
+     * Copied from stackoverflow: https://stackoverflow.com/a/53951634
+     * Copy a string to clipboard
+     * @param  {String} string         The string to be copied to clipboard
+     */
+    private _copyToClipboard(string) {
+        let textarea;
+
+        textarea = document.createElement('textarea');
+        textarea.setAttribute('readonly', true);
+        textarea.setAttribute('contenteditable', true);
+        textarea.style.position = 'fixed'; // prevent scroll from jumping to the bottom when focus is set.
+        textarea.value = string;
+
+        document.body.appendChild(textarea);
+
+        textarea.focus();
+        textarea.select();
+
+        const range = document.createRange();
+        range.selectNodeContents(textarea);
+
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+
+        textarea.setSelectionRange(0, textarea.value.length);
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    }
+
     public dispose() {}
 }
 
-/**
- * Copied from stackoverflow: https://stackoverflow.com/a/53951634
- * Copy a string to clipboard
- * @param  {String} string         The string to be copied to clipboard
- */
-function copyToClipboard(string) {
-    let textarea;
 
-    textarea = document.createElement('textarea');
-    textarea.setAttribute('readonly', true);
-    textarea.setAttribute('contenteditable', true);
-    textarea.style.position = 'fixed'; // prevent scroll from jumping to the bottom when focus is set.
-    textarea.value = string;
-
-    document.body.appendChild(textarea);
-
-    textarea.focus();
-    textarea.select();
-
-    const range = document.createRange();
-    range.selectNodeContents(textarea);
-
-    const sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
-
-    textarea.setSelectionRange(0, textarea.value.length);
-    document.execCommand('copy');
-    document.body.removeChild(textarea);
-}
