@@ -24,10 +24,11 @@ export class MobileSelectAddon implements ITerminalAddon {
             let left = coords[1] - 1;
             console.log('left = ' + left);
 
-            return;
-
             terminal.select(row, right, 1);
+            console.log('char under click = ' + terminal.getSelection());
             if (terminal.getSelection() === ' ') return;
+
+            return;
 
             console.log('not space');
 
