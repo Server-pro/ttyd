@@ -107,6 +107,9 @@ export class Xterm extends Component<Props> {
                 <input type="button" value="Copy" onClick={() => console.log('test')} />
                 <input type="button" value="Paste" onClick={() =>
                     {
+                        var thing = window.navigator;
+                        console.log(thing.platform);
+                        console.log(thing.clipboard.readText());
                         window.navigator.clipboard.readText().then(value => this.terminal.write(value));
                     }
                 }/>
