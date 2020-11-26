@@ -105,13 +105,13 @@ export class Xterm extends Component<Props> {
             <div id={id} ref={c => (this.container = c)}>
                 <ZmodemAddon ref={c => (this.zmodemAddon = c)} sender={this.sendData} />
                 <input type="button" value="Copy" onClick={() => console.log('test')} />
-                <input type="button" value="Paste" onClick={() =>
-                    {
-                        var thing = window.navigator;
-                        console.log(thing.platform);
-                        thing.clipboard.readText().then(value => console.log(value));
-                        thing.clipboard.readText().then(value => this.terminal.write(value));
-                    }
+                <input type="button" value="Paste" onClick={() => {
+                    var nav = window.navigator;
+                    console.log(nav.platform);
+                    var clip = nav.clipboard;
+                    clip.readText().then(value => console.log(value));
+                    clip.readText().then(value => this.terminal.write(value));
+                }
                 }/>
             </div>
         );
