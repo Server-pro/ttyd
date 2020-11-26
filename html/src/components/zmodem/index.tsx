@@ -33,6 +33,7 @@ export class ZmodemAddon extends Component<Props, State> implements ITerminalAdd
                     <input onChange={this.sendFile} class="file-input" type="file" multiple />
                     <span class="file-cta">Choose files…</span>
                 </label>
+                <p>testing zmodem index.tsx</p>
             </Modal>
         );
     }
