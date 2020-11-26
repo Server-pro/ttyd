@@ -42,11 +42,16 @@ export class MobileSelectAddon implements ITerminalAddon {
             const coords = this._evToCoords(ev);
 
             this._core._selectionService._selectWordAt(coords, false);
-            this._copyToClipboard(terminal.getSelection());
+            this.copySelected();
             this._overlayAddon.showOverlay(this._scissors, this._overlayTimeout);
 
             this._doSelect = false;
         });
+    }
+
+    public copySelected() {
+
+        this._copyToClipboard(this._terminal.getSelection());
     }
 
     private _evToCoords(ev: MouseEvent) {

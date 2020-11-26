@@ -48,6 +48,7 @@ export class Xterm extends Component<Props> {
     private fitAddon: FitAddon;
     private overlayAddon: OverlayAddon;
     private zmodemAddon: ZmodemAddon;
+    private mobileSelectAddon: MobileSelectAddon;
     private socket: WebSocket;
     private token: string;
     private title: string;
@@ -65,6 +66,7 @@ export class Xterm extends Component<Props> {
         this.textDecoder = new TextDecoder();
         this.fitAddon = new FitAddon();
         this.overlayAddon = new OverlayAddon();
+        this.mobileSelectAddon = new MobileSelectAddon(this.overlayAddon);
         this.backoff = backoff.exponential({
             initialDelay: 100,
             maxDelay: 10000,
@@ -104,7 +106,7 @@ export class Xterm extends Component<Props> {
         return (
             <div id={id} ref={c => (this.container = c)}>
                 <ZmodemAddon ref={c => (this.zmodemAddon = c)} sender={this.sendData} />
-                <input type="button" value="Copy" onClick={() => console.log('test')} />
+                <input type="button" value="Copy" onClick={() => this.mobileSelectAddon.copySelected()} />
                 <input type="button" value="Paste" onClick={() => {
                     var nav = window.navigator;
                     console.log(nav.platform);
@@ -171,7 +173,7 @@ export class Xterm extends Component<Props> {
         terminal.loadAddon(overlayAddon);
         terminal.loadAddon(new WebLinksAddon());
         terminal.loadAddon(this.zmodemAddon);
-        terminal.loadAddon(new MobileSelectAddon(overlayAddon));
+        terminal.loadAddon(this.mobileSelectAddon);
 
         terminal.onTitleChange(data => {
             if (data && data !== '' && !this.titleFixed) {
