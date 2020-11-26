@@ -109,8 +109,8 @@ export class Xterm extends Component<Props> {
                     {
                         var thing = window.navigator;
                         console.log(thing.platform);
-                        console.log(thing.clipboard.readText());
-                        window.navigator.clipboard.readText().then(value => this.terminal.write(value));
+                        thing.clipboard.readText().then(value => console.log(value));
+                        thing.clipboard.readText().then(value => this.terminal.write(value));
                     }
                 }/>
             </div>
