@@ -20,7 +20,6 @@ export class Modal extends Component<Props> {
                     <div className="modal-content">
                         <div className="box">{children}</div>
                     </div>
-                    <p>testing, modal index.tsx</p>
                 </div>
             )
         );

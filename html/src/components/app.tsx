@@ -41,10 +41,7 @@ const termOptions = {
 export class App extends Component {
     render() {
         return (
-            <body>
-                < Xterm id="terminal-container" wsUrl={wsUrl} tokenUrl={tokenUrl} options={termOptions} />
-                <p>testing, app.tsx</p>
-            </body>
+            < Xterm id="terminal-container" wsUrl={wsUrl} tokenUrl={tokenUrl} options={termOptions} />
         );
     }
 }

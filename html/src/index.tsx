@@ -4,4 +4,3 @@ import { App } from './components/app';
 import './style/index.scss';
 
 render(<App />, document.body);
-<p>testing index.tsx</p>
