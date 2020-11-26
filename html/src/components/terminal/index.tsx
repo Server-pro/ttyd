@@ -105,6 +105,7 @@ export class Xterm extends Component<Props> {
             <div id={id} ref={c => (this.container = c)}>
                 <ZmodemAddon ref={c => (this.zmodemAddon = c)} sender={this.sendData} />
                 <input type="button" value="Copy" onClick={() => console.log('test')} />
+                <input type="button" value="Paste" onClick={() => navigator.clipboard.readText().then(value => this.terminal.write(value))}/>
             </div>
         );
     }
