@@ -104,7 +104,7 @@ export class Xterm extends Component<Props> {
         return (
             <div id={id} ref={c => (this.container = c)}>
                 <ZmodemAddon ref={c => (this.zmodemAddon = c)} sender={this.sendData} />
-                testing, terminal index.tsx
+                <input type="button" value="Copy" onClick={() => console.log('test')} />
             </div>
         );
     }
