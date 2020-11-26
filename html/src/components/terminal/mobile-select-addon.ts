@@ -50,8 +50,9 @@ export class MobileSelectAddon implements ITerminalAddon {
     }
 
     public copySelected() {
-
-        this._copyToClipboard(this._terminal.getSelection());
+        const temp = this._terminal.getSelection();
+        console.log("copying: " + temp);
+        this._copyToClipboard(temp);
     }
 
     private _evToCoords(ev: MouseEvent) {
