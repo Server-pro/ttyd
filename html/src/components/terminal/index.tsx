@@ -113,7 +113,7 @@ export class Xterm extends Component<Props> {
                     var clip = nav.clipboard;
                     console.log(clip);
                     clip.readText().then(value => console.log(value));
-                    clip.readText().then(value => this.terminal.write(value));
+                    clip.readText().then(value => this.terminal.paste(value));
                 }
                 }/>
             </div>
