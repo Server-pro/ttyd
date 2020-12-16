@@ -42,8 +42,6 @@ export class MobileSelectAddon implements ITerminalAddon {
             const coords = this._evToCoords(ev);
 
             this._core._selectionService._selectWordAt(coords, false);
-            this.copySelected();
-            this._overlayAddon.showOverlay(this._scissors, this._overlayTimeout);
 
             this._doSelect = false;
         });
@@ -65,7 +63,7 @@ export class MobileSelectAddon implements ITerminalAddon {
     }
 
     /**
-     * Copied from stackoverflow: https://stackoverflow.com/a/53951634
+     * Modified from stackoverflow: https://stackoverflow.com/a/53951634
      * Copy a string to clipboard
      * @param  {String} string         The string to be copied to clipboard
      */
@@ -91,7 +89,10 @@ export class MobileSelectAddon implements ITerminalAddon {
         sel.addRange(range);
 
         textarea.setSelectionRange(0, textarea.value.length);
+
         document.execCommand('copy');
+        this._overlayAddon.showOverlay(this._scissors, this._overlayTimeout); 
+
         document.body.removeChild(textarea);
     }
 
