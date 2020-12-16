@@ -20,7 +20,7 @@ export class MobileSelectAddon implements ITerminalAddon {
     public activate(terminal: Terminal) {
 
         //only active for ios users
-        if (!navigator.userAgent.match(/ipad|ipod|iphone/i)) return;
+        //if (!navigator.userAgent.match(/ipad|ipod|iphone/i)) return;
 
         this._terminal = terminal;
         this._core = (terminal as any)._core;
@@ -30,7 +30,7 @@ export class MobileSelectAddon implements ITerminalAddon {
             this._core._selectionService._selectWordAt(coords, false);
 
             //return if clicked on space, without this users can't click to type as normal
-            //if(terminal.getSelection().length === 0) return;
+            if(terminal.getSelection().length === 0) return;
 
             this._doSelect = true;
         });
