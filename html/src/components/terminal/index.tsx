@@ -101,21 +101,13 @@ export class Xterm extends Component<Props> {
         window.removeEventListener('resize', this.onWindowResize);
         window.removeEventListener('beforeunload', this.onWindowUnload);
     }
-
+    
     render({ id }: Props) {
         return (
             <div id={id} ref={c => (this.container = c)}>
                 <ZmodemAddon ref={c => (this.zmodemAddon = c)} sender={this.sendData} />
-                <input type="button" value="Copy" onClick={() => this.mobileSelectAddon.copySelected()} />
-                <input type="button" value="Paste" onClick={() => {
-                    var nav = window.navigator;
-                    console.log(nav.platform);
-                    var clip = nav.clipboard;
-                    console.log(clip);
-                    clip.readText().then(value => console.log(value));
-                    clip.readText().then(value => this.terminal.paste(value));
-                }
-                }/>
+                <input type="button" value="Copy" onClick={() => this.mobileSelectAddon.copy()} />
+                <input type="button" value="Paste" onClick={() => this.mobileSelectAddon.paste()} />
             </div>
         );
     }
