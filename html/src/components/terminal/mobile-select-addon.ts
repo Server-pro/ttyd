@@ -1,4 +1,4 @@
-import { Terminal, ITerminalAddon } from 'xterm';
+import { ITerminalAddon, Terminal } from 'xterm';
 import { OverlayAddon } from './overlay';
 
 export class MobileSelectAddon implements ITerminalAddon {
@@ -50,6 +50,7 @@ export class MobileSelectAddon implements ITerminalAddon {
             const coords = this._evToCoords(ev);
 
             this._core._selectionService._selectWordAt(coords, false);
+            this.copy();
 
             this._doSelect = false;
         });
