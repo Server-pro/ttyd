@@ -106,8 +106,6 @@ export class Xterm extends Component<Props> {
         return (
             <div id={id} ref={c => (this.container = c)}>
                 <ZmodemAddon ref={c => (this.zmodemAddon = c)} sender={this.sendData} />
-                <input type="button" value="Copy" onClick={() => this.mobileSelectAddon.copy()} />
-                <input type="button" value="Paste" onClick={() => this.mobileSelectAddon.paste()} />
             </div>
         );
     }
